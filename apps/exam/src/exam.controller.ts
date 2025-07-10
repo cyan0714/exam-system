@@ -49,4 +49,22 @@ export class ExamController {
   async publish(@UserInfo('userId') userId: number, @Param('id') id: string) {
     return this.examService.publish(userId, +id);
   }
+
+  @Get('unpublish/:id')
+  @RequireLogin()
+  async unpublish(@UserInfo('userId') userId: number, @Param('id') id: string) {
+    return this.examService.unpublish(userId, +id);
+  }
+
+  @Get('recover/:id')
+  @RequireLogin()
+  async recover(@UserInfo('userId') userId: number, @Param('id') id: string) {
+    return this.examService.recover(userId, +id);
+  }
+
+  @Get('find/:id')
+  @RequireLogin()
+  async find(@Param('id') id: string) {
+    return this.examService.find(+id);
+  }
 }
