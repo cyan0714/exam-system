@@ -1,6 +1,6 @@
 # 在线考试系统
 
-基于 NestJS 微服务架构的在线考试系统，支持试卷管理、答题、成绩分析等功能。
+基于 NestJS 微服务架构的在线考试系统，支持试卷管理、答题、成绩分析等功能。[前端项目在这](https://github.com/cyan0714/exam-system-frontend)。
 
 ## 项目简介
 
@@ -82,7 +82,7 @@
 - MySQL >= 8.0
 - Redis >= 6.2
 
-## 安装部署
+## 快速启动
 
 ### 1. 克隆项目
 ```bash
@@ -133,12 +133,15 @@ MICROSERVICE_PORT="8888"
 ```
 
 **重要提示：**
-- 请确保将 `JWT_SECRET` 设置为一个强密码
+- 
+- 生产环境需要将 `JWT_SECRET` 设置为一个强密码
 - 配置正确的邮件服务器信息用于发送验证码
 - 如果使用 QQ 邮箱，需要开启 SMTP 服务并使用授权码作为密码
 - 确保 MySQL 和 Redis 服务正在运行
 
 ### 4. 数据库初始化
+先去 MySQL 新建一个 exam_system 数据库
+
 ```bash
 # 生成 Prisma Client
 pnpm prisma generate
@@ -151,10 +154,6 @@ pnpm prisma migrate dev
 
 #### 开发环境
 ```bash
-# 启动所有微服务
-pnpm run start:dev
-
-# 或分别启动各个服务
 pnpm run start:dev exam-system  # 主服务 (3000)
 pnpm run start:dev user         # 用户服务 (3001)
 pnpm run start:dev exam         # 试卷服务 (3002)
