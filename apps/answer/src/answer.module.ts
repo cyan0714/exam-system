@@ -17,7 +17,7 @@ import { ExcelModule } from '@app/excel';
         name: 'EXAM_SERVICE',
         transport: Transport.TCP,
         options: {
-          port: 8888,
+          port: parseInt(process.env.MICROSERVICE_PORT) || 8888,
         },
       },
     ]),

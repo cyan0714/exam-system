@@ -8,9 +8,9 @@ import { JwtModule } from '@nestjs/jwt';
       global: true,
       useFactory() {
         return {
-          secret: 'Cyan',
+          secret: process.env.JWT_SECRET || 'Cyan',
           signOptions: {
-            expiresIn: '30m', // 默认 30 分钟
+            expiresIn: process.env.JWT_EXPIRES_IN || '30m',
           },
         };
       },

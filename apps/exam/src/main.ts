@@ -8,12 +8,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableCors();
-  await app.listen(3002);
+  await app.listen(parseInt(process.env.EXAM_SERVICE_PORT) || 3002);
 
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-      port: 8888,
+      port: parseInt(process.env.MICROSERVICE_PORT) || 8888,
     },
   });
   app.startAllMicroservices();

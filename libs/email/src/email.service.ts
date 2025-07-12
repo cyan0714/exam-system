@@ -7,12 +7,11 @@ export class EmailService {
 
   constructor() {
     this.transporter = createTransport({
-      host: 'smtp.qq.com',
-      port: 587,
-      secure: false,
+      host: process.env.EMAIL_HOST || 'smtp.qq.com',
+      port: parseInt(process.env.EMAIL_PORT) || 587,
       auth: {
-        user: '1483762599@qq.com',
-        pass: 'isotajtseetuhagg',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
   }
@@ -20,8 +19,8 @@ export class EmailService {
   async sendMail({ to, subject, html }) {
     await this.transporter.sendMail({
       from: {
-        name: '考试系统',
-        address: '1483762599@qq.com',
+        name: process.env.EMAIL_FROM_NAME || '考试系统',
+        address: process.env.EMAIL_FROM_ADDRESS,
       },
       to,
       subject,
